@@ -71,6 +71,14 @@ void shuffle_deck() {
   }
 }
 
+void show_deck() {
+  printf("Deck: ");
+  for (int i = deck_position; i < 52; i++) {
+    printf("%d%c ", deck[i].value, deck[i].suit);
+  }
+  printf("\n");
+}
+
 void init_player(int i) {
   players[i].folded = false;
   players[i].human = false;
