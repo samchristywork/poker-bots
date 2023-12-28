@@ -54,5 +54,14 @@ void init_deck() {
   }
 }
 
+void shuffle_deck() {
+  for (int i = 0; i < 52; i++) {
+    int j = rand() % 52;
+    struct card temp = deck[i];
+    deck[i] = deck[j];
+    deck[j] = temp;
+  }
+}
+
 int main() {
 }
