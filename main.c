@@ -90,6 +90,18 @@ void init_player(int i) {
   }
 }
 
+void show_player(int i) {
+  printf("Player %d: ", i);
+  printf("%d ", players[i].chips);
+  for (int j = 0; j < hand_shown; j++) {
+    printf("%d%c ", players[i].hand[j].value, players[i].hand[j].suit);
+  }
+  if (players[i].folded) {
+    printf("(folded)");
+  }
+  printf("\n");
+}
+
 int main() {
   srand(time(NULL));
 }
