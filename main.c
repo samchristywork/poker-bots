@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 struct card {
   int value;
@@ -75,4 +76,5 @@ void init_player(int i) {
 }
 
 int main() {
+  srand(time(NULL));
 }
