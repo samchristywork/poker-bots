@@ -63,5 +63,16 @@ void shuffle_deck() {
   }
 }
 
+void init_player(int i) {
+  players[i].folded = false;
+  players[i].human = false;
+  players[i].chips = 20;
+
+  for (int j = 0; j < 5; j++) {
+    players[i].hand[j] = deck[deck_position];
+    deck_position++;
+  }
+}
+
 int main() {
 }
