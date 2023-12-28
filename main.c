@@ -102,6 +102,14 @@ void show_player(int i) {
   printf("\n");
 }
 
+void show_community() {
+  printf("Community: ");
+  for (int i = 0; i < community_shown; i++) {
+    printf("%d%c ", community[i].value, community[i].suit);
+  }
+  printf("\n");
+}
+
 int main() {
   srand(time(NULL));
 }
