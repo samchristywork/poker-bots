@@ -31,6 +31,13 @@ int community_shown = 0;
 int hand_shown = 2;
 int starting_player = 0;
 
+void deal_community() {
+  for (int i = 0; i < 5; i++) {
+    community[i] = deck[deck_position];
+    deck_position++;
+  }
+}
+
 void init_deck() {
   int i = 0;
   for (int suit = 0; suit < 4; suit++) {
