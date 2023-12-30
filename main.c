@@ -110,6 +110,17 @@ void show_community() {
   printf("\n");
 }
 
+void call(int i) { printf("	Player %d calls\n", i); }
+
+void raise(int i) { printf("	Player %d raises\n", i); }
+
+void fold(int i) {
+  printf("	Player %d folds\n", i);
+  players[i].folded = true;
+}
+
+void check(int i) { printf("	Player %d checks\n", i); }
+
 int main() {
   srand(time(NULL));
 }
