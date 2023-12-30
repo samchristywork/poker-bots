@@ -121,6 +121,20 @@ void fold(int i) {
 
 void check(int i) { printf("	Player %d checks\n", i); }
 
+void ai(int i) {
+  if (players[i].folded) {
+    return;
+  }
+  int r = rand() % 100;
+  if (r < 50) {
+    call(i);
+  } else if (r < 75) {
+    raise(i);
+  } else {
+    fold(i);
+  }
+}
+
 int main() {
   srand(time(NULL));
 }
