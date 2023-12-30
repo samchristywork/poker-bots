@@ -137,4 +137,22 @@ void ai(int i) {
 
 int main() {
   srand(time(NULL));
+  init_deck();
+  shuffle_deck();
+  for (int i = 0; i < 5; i++) {
+    init_player(i);
+  }
+
+  deal_community();
+
+  show_players();
+  show_community();
+
+  preflop();
+
+  community_shown = 3;
+  hand_shown = 5;
+
+  show_players();
+  show_community();
 }
