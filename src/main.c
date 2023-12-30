@@ -135,6 +135,15 @@ void ai(int i) {
   }
 }
 
+void preflop() {
+  printf("Preflop\n");
+  int i = starting_player;
+  for (int j = 0; j < 5; j++) {
+    ai(i);
+    i = (i + 1) % 5;
+  }
+}
+
 int main() {
   srand(time(NULL));
   init_deck();
