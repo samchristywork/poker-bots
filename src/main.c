@@ -30,6 +30,18 @@ int pot = 0;
 int community_shown = 0;
 int hand_shown = 2;
 int starting_player = 0;
+struct game {
+  struct card community[5];
+  struct player players[5];
+  struct card deck[52];
+  int deck_position;
+  int small_blind;
+  int big_blind;
+  int pot;
+  int community_shown;
+  int hand_shown;
+  int starting_player;
+};
 
 void deal_community() {
   for (int i = 0; i < 5; i++) {
