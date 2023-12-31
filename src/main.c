@@ -20,16 +20,6 @@ struct rank {
   int value;
 };
 
-struct card community[5];
-struct player players[5];
-struct card deck[52];
-int deck_position = 0;
-int small_blind = 1;
-int big_blind = 2;
-int pot = 0;
-int community_shown = 0;
-int hand_shown = 2;
-int starting_player = 0;
 struct game {
   struct card community[5];
   struct player players[5];
@@ -43,10 +33,12 @@ struct game {
   int starting_player;
 };
 
+struct game game;
+
 void deal_community() {
   for (int i = 0; i < 5; i++) {
-    community[i] = deck[deck_position];
-    deck_position++;
+    game.community[i] = game.deck[game.deck_position];
+    game.deck_position++;
   }
 }
 
@@ -54,19 +46,19 @@ void init_deck() {
   int i = 0;
   for (int suit = 0; suit < 4; suit++) {
     for (int value = 2; value < 15; value++) {
-      deck[i].value = value;
+      game.deck[i].value = value;
       switch (suit) {
       case 0:
-        deck[i].suit = 'H';
+        game.deck[i].suit = 'H';
         break;
       case 1:
-        deck[i].suit = 'D';
+        game.deck[i].suit = 'D';
         break;
       case 2:
-        deck[i].suit = 'C';
+        game.deck[i].suit = 'C';
         break;
       case 3:
-        deck[i].suit = 'S';
+        game.deck[i].suit = 'S';
         break;
       }
       i++;
@@ -77,38 +69,39 @@ void init_deck() {
 void shuffle_deck() {
   for (int i = 0; i < 52; i++) {
     int j = rand() % 52;
-    struct card temp = deck[i];
-    deck[i] = deck[j];
-    deck[j] = temp;
+    struct card temp = game.deck[i];
+    game.deck[i] = game.deck[j];
+    game.deck[j] = temp;
   }
 }
 
 void show_deck() {
   printf("Deck: ");
-  for (int i = deck_position; i < 52; i++) {
-    printf("%d%c ", deck[i].value, deck[i].suit);
+  for (int i = game.deck_position; i < 52; i++) {
+    printf("%d%c ", game.deck[i].value, game.deck[i].suit);
   }
   printf("\n");
 }
 
 void init_player(int i) {
-  players[i].folded = false;
-  players[i].human = false;
-  players[i].chips = 20;
+  game.players[i].folded = false;
+  game.players[i].human = false;
+  game.players[i].chips = 20;
 
   for (int j = 0; j < 5; j++) {
-    players[i].hand[j] = deck[deck_position];
-    deck_position++;
+    game.players[i].hand[j] = game.deck[game.deck_position];
+    game.deck_position++;
   }
 }
 
 void show_player(int i) {
   printf("Player %d: ", i);
-  printf("%d ", players[i].chips);
-  for (int j = 0; j < hand_shown; j++) {
-    printf("%d%c ", players[i].hand[j].value, players[i].hand[j].suit);
+  printf("%d ", game.players[i].chips);
+  for (int j = 0; j < game.hand_shown; j++) {
+    printf("%d%c ", game.players[i].hand[j].value,
+           game.players[i].hand[j].suit);
   }
-  if (players[i].folded) {
+  if (game.players[i].folded) {
     printf("(folded)");
   }
   printf("\n");
@@ -116,8 +109,8 @@ void show_player(int i) {
 
 void show_community() {
   printf("Community: ");
-  for (int i = 0; i < community_shown; i++) {
-    printf("%d%c ", community[i].value, community[i].suit);
+  for (int i = 0; i < game.community_shown; i++) {
+    printf("%d%c ", game.community[i].value, game.community[i].suit);
   }
   printf("\n");
 }
@@ -128,13 +121,13 @@ void raise(int i) { printf("	Player %d raises\n", i); }
 
 void fold(int i) {
   printf("	Player %d folds\n", i);
-  players[i].folded = true;
+  game.players[i].folded = true;
 }
 
 void check(int i) { printf("	Player %d checks\n", i); }
 
 void ai(int i) {
-  if (players[i].folded) {
+  if (game.players[i].folded) {
     return;
   }
   int r = rand() % 100;
@@ -149,7 +142,7 @@ void ai(int i) {
 
 void preflop() {
   printf("Preflop\n");
-  int i = starting_player;
+  int i = game.starting_player;
   for (int j = 0; j < 5; j++) {
     ai(i);
     i = (i + 1) % 5;
