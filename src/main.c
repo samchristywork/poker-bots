@@ -150,6 +150,13 @@ void preflop() {
 }
 
 int main() {
+  game.starting_player = 0;
+  game.small_blind = 1;
+  game.big_blind = 2;
+  game.pot = 0;
+  game.community_shown = 0;
+  game.hand_shown = 2;
+
   srand(time(NULL));
   init_deck();
   shuffle_deck();
@@ -164,8 +171,8 @@ int main() {
 
   preflop();
 
-  community_shown = 3;
-  hand_shown = 5;
+  game.community_shown = 3;
+  game.hand_shown = 5;
 
   show_players();
   show_community();
