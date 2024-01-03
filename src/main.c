@@ -9,7 +9,7 @@ struct card {
 };
 
 struct player {
-  struct card hand[5];
+  struct card hand[2];
   bool folded;
   bool human;
   int chips;
