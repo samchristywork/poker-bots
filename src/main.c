@@ -149,6 +149,32 @@ void preflop() {
   }
 }
 
+bool is_flush(struct card hand[7]) {
+  int count[4] = {0, 0, 0, 0};
+  for (int i = 0; i < 7; i++) {
+    switch (hand[i].suit) {
+    case 'H':
+      count[0]++;
+      break;
+    case 'D':
+      count[1]++;
+      break;
+    case 'C':
+      count[2]++;
+      break;
+    case 'S':
+      count[3]++;
+      break;
+    }
+  }
+  for (int i = 0; i < 4; i++) {
+    if (count[i] >= 5) {
+      return true;
+    }
+  }
+  return false;
+}
+
 int main() {
   game.starting_player = 0;
   game.small_blind = 1;
