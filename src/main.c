@@ -175,6 +175,20 @@ bool is_flush(struct card hand[7]) {
   return false;
 }
 
+bool is_straight(struct card hand[7]) {
+  int count[15] = {0};
+  for (int i = 0; i < 7; i++) {
+    count[hand[i].value]++;
+  }
+  for (int i = 0; i < 11; i++) {
+    if (count[i] && count[i + 1] && count[i + 2] && count[i + 3] &&
+        count[i + 4]) {
+      return true;
+    }
+  }
+  return false;
+}
+
 int main() {
   game.starting_player = 0;
   game.small_blind = 1;
