@@ -189,6 +189,14 @@ bool is_straight(struct card hand[7]) {
   return false;
 }
 
+bool is_straight_flush(struct card hand[7]) {
+  if (is_flush(hand) && is_straight(hand)) {
+    return true;
+  }
+
+  return false;
+}
+
 int main() {
   game.starting_player = 0;
   game.small_blind = 1;
