@@ -197,6 +197,16 @@ bool is_straight_flush(struct card hand[7]) {
   return false;
 }
 
+bool is_royal_flush(struct card hand[7]) {
+  if (is_straight_flush(hand)) {
+    if (hand[0].value == 10) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 int main() {
   game.starting_player = 0;
   game.small_blind = 1;
