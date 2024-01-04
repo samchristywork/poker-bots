@@ -220,6 +220,26 @@ bool is_four_of_a_kind(struct card hand[7]) {
   return false;
 }
 
+bool is_full_house(struct card hand[7]) {
+  int count[15] = {0};
+  for (int i = 0; i < 7; i++) {
+    count[hand[i].value]++;
+  }
+  bool three = false;
+  bool two = false;
+  for (int i = 0; i < 15; i++) {
+    if (count[i] == 3) {
+      three = true;
+    } else if (count[i] == 2) {
+      two = true;
+    }
+  }
+  if (three && two) {
+    return true;
+  }
+  return false;
+}
+
 int main() {
   game.starting_player = 0;
   game.small_blind = 1;
