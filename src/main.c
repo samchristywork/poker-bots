@@ -207,6 +207,19 @@ bool is_royal_flush(struct card hand[7]) {
   return false;
 }
 
+bool is_four_of_a_kind(struct card hand[7]) {
+  int count[15] = {0};
+  for (int i = 0; i < 7; i++) {
+    count[hand[i].value]++;
+  }
+  for (int i = 0; i < 15; i++) {
+    if (count[i] >= 4) {
+      return true;
+    }
+  }
+  return false;
+}
+
 int main() {
   game.starting_player = 0;
   game.small_blind = 1;
