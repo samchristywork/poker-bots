@@ -253,6 +253,23 @@ bool is_three_of_a_kind(struct card hand[7]) {
   return false;
 }
 
+bool is_two_pair(struct card hand[7]) {
+  int count[15] = {0};
+  for (int i = 0; i < 7; i++) {
+    count[hand[i].value]++;
+  }
+  int pairs = 0;
+  for (int i = 0; i < 15; i++) {
+    if (count[i] == 2) {
+      pairs++;
+    }
+  }
+  if (pairs == 2) {
+    return true;
+  }
+  return false;
+}
+
 int main() {
   game.starting_player = 0;
   game.small_blind = 1;
