@@ -283,6 +283,18 @@ bool is_one_pair(struct card hand[7]) {
   return false;
 }
 
+void sort(struct card hand[7], int n) {
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n - 1 - i; j++) {
+      if (hand[j].value > hand[j + 1].value) {
+        struct card temp = hand[j];
+        hand[j] = hand[j + 1];
+        hand[j + 1] = temp;
+      }
+    }
+  }
+}
+
 int main() {
   game.starting_player = 0;
   game.small_blind = 1;
