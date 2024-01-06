@@ -345,6 +345,12 @@ struct rank rank(struct card hand[7]) {
   return r;
 }
 
+void show_players() {
+  for (int i = 0; i < 5; i++) {
+    show_player(i);
+  }
+}
+
 int main() {
   game.starting_player = 0;
   game.small_blind = 1;
@@ -359,6 +365,8 @@ int main() {
   for (int i = 0; i < 5; i++) {
     init_player(i);
   }
+
+  show_players();
 
   deal_community();
 
