@@ -295,6 +295,54 @@ void sort(struct card hand[7], int n) {
   }
 }
 
+struct rank rank(struct card hand[7]) {
+  struct rank r;
+
+  if (is_royal_flush(hand)) {
+    r.rank = 1;
+    r.value = 0;
+    return r;
+  } else if (is_straight_flush(hand)) {
+    r.rank = 2;
+    r.value = 0;
+    return r;
+  } else if (is_four_of_a_kind(hand)) {
+    r.rank = 3;
+    r.value = 0;
+    return r;
+  } else if (is_full_house(hand)) {
+    r.rank = 4;
+    r.value = 0;
+    return r;
+  } else if (is_flush(hand)) {
+    r.rank = 5;
+    r.value = 0;
+    return r;
+  } else if (is_straight(hand)) {
+    r.rank = 6;
+    r.value = 0;
+    return r;
+  } else if (is_three_of_a_kind(hand)) {
+    r.rank = 7;
+    r.value = 0;
+    return r;
+  } else if (is_two_pair(hand)) {
+    r.rank = 8;
+    r.value = 0;
+    return r;
+  } else if (is_one_pair(hand)) {
+    r.rank = 9;
+    r.value = 0;
+    return r;
+  } else {
+    r.rank = 1;
+    r.value = 0;
+    return r;
+  }
+
+  return r;
+}
+
 int main() {
   game.starting_player = 0;
   game.small_blind = 1;
