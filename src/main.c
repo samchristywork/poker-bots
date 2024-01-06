@@ -298,6 +298,8 @@ void sort(struct card hand[7], int n) {
 struct rank rank(struct card hand[7]) {
   struct rank r;
 
+  sort(hand, 7);
+
   if (is_royal_flush(hand)) {
     r.rank = 1;
     r.value = 0;
